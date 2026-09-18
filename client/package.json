@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "dev": "ng serve --open",
-    "build": "ng build",
+    "build": "npx @angular/cli build",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,
