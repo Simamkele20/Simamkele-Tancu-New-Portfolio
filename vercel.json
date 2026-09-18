@@ -1,8 +1,5 @@
 {
-  "buildCommand": "npm run build:vercel",
-  "outputDirectory": "client/dist",
-  "env": {
-    "NODE_ENV": "production"
-  },
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "installCommand": "npm install --legacy-peer-deps"
 }
