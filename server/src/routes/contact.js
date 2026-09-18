@@ -6,6 +6,8 @@ const { sendContactEmail } = require('../utils/emailer');
 // POST new contact submission
 router.post('/', async (req, res) => {
   try {
+    console.log('Contact form received:', { name: req.body.name, email: req.body.email });
+    
     const { name, email, subject, message } = req.body;
 
     // Validation
@@ -28,28 +30,29 @@ router.post('/', async (req, res) => {
     });
 
     const savedSubmission = await contactSubmission.save();
+    console.log('Contact saved to DB:', savedSubmission._id);
 
-    // Send email notification
-    try {
-      await sendContactEmail({
-        name,
-        email,
-        subject: subject || 'No Subject',
-        message,
-      });
-    } catch (emailError) {
+    // Send email notification asynchronously (don't wait for it)
+    sendContactEmail({
+      name,
+      email,
+      subject: subject || 'No Subject',
+      message,
+    }).catch((emailError) => {
       console.error('Email sending failed:', emailError);
-      // Log error but still return success for form submission
-      // The submission is already saved in the database
-    }
+    });
 
+    // Return success immediately after saving to DB
     res.status(201).json({
       message: 'Thank you! Your message has been received. We will get back to you soon.',
       submission: savedSubmission,
     });
   } catch (error) {
     console.error('Error processing contact form:', error);
-    res.status(500).json({ message: 'Error processing contact form', error: error.message });
+    res.status(500).json({ 
+      message: 'Error processing contact form', 
+      error: error.message 
+    });
   }
 });
 
