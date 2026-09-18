@@ -1,0 +1,138 @@
+<section class="contact-section">
+  <div class="container-fluid px-5">
+    <h1 class="page-title">Get In Touch</h1>
+
+    <div class="contact-wrapper">
+      <div class="form-container">
+        <div *ngIf="successMessage()" class="alert-message success">
+          <i class="bi bi-check-circle"></i>
+          {{ successMessage() }}
+          <button class="close-btn" (click)="successMessage.set('')">×</button>
+        </div>
+
+        <div *ngIf="errorMessage()" class="alert-message error">
+          <i class="bi bi-exclamation-circle"></i>
+          {{ errorMessage() }}
+          <button class="close-btn" (click)="errorMessage.set('')">×</button>
+        </div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name *</label>
+            <input
+              type="text"
+              class="form-input"
+              id="name"
+              formControlName="name"
+              [class.input-error]="isFieldInvalid('name')"
+              placeholder="Your full name"
+            />
+            <div class="error-message" *ngIf="isFieldInvalid('name')">
+              <span *ngIf="contactForm.get('name')?.hasError('required')">
+                Name is required
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address *</label>
+            <input
+              type="email"
+              class="form-input"
+              id="email"
+              formControlName="email"
+              [class.input-error]="isFieldInvalid('email')"
+              placeholder="your.email@example.com"
+            />
+            <div class="error-message" *ngIf="isFieldInvalid('email')">
+              <span *ngIf="contactForm.get('email')?.hasError('required')">
+                Email is required
+              </span>
+              <span *ngIf="contactForm.get('email')?.hasError('email')">
+                Please enter a valid email
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject" class="form-label">Subject</label>
+            <input
+              type="text"
+              class="form-input"
+              id="subject"
+              formControlName="subject"
+              placeholder="What is this about?"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Message *</label>
+            <textarea
+              class="form-input textarea"
+              id="message"
+              formControlName="message"
+              rows="6"
+              [class.input-error]="isFieldInvalid('message')"
+              placeholder="Your message here..."
+            ></textarea>
+            <div class="error-message" *ngIf="isFieldInvalid('message')">
+              <span *ngIf="contactForm.get('message')?.hasError('required')">
+                Message is required
+              </span>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="isLoading() || !contactForm.valid"
+          >
+            <span *ngIf="!isLoading()">Send Message</span>
+            <span *ngIf="isLoading()" class="loading-text">
+              <span class="spinner"></span>
+              Sending...
+            </span>
+          </button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h2 class="info-title">Contact Information</h2>
+        <div class="info-item">
+          <h4 class="info-label">Email</h4>
+          <a href="mailto:princetancu06@gmail.com" class="info-link">
+            princetancu06@gmail.com
+          </a>
+        </div>
+        <div class="info-item">
+          <h4 class="info-label">Phone</h4>
+          <a href="tel:0656013640" class="info-link">
+            0656013640
+          </a>
+        </div>
+        <div class="info-item">
+          <h4 class="info-label">Location</h4>
+          <p class="info-text">Cape Town, Western Cape</p>
+        </div>
+        
+        <div class="info-item">
+          <h4 class="info-label">Social Links</h4>
+          <div class="social-links">
+            <a href="https://github.com/Simamkele20" target="_blank" class="social-link" title="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/simamkele-tancu/" target="_blank" class="social-link" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <a href="/cv.pdf" download="Simamkele_Tancu_CV.pdf" class="download-cv-link">
+            <i class="bi bi-download"></i> DOWNLOAD CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

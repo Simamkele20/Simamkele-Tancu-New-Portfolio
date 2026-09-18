@@ -1,0 +1,100 @@
+<section class="projects-section">
+  <div class="container-fluid px-5">
+    <h1 class="page-title">Projects</h1>
+
+    <div *ngIf="loading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading projects...</p>
+    </div>
+
+    <!-- Side Projects Section -->
+    <div *ngIf="!loading && sideProjects.length > 0" class="projects-category">
+      <h2 class="category-title">Real Life Projects</h2>
+      <div class="projects-grid">
+        <div *ngFor="let project of sideProjects" class="project-card featured-project">
+          <div class="card-image-wrapper">
+            <img
+              [src]="project.image"
+              alt="{{ project.title }}"
+              class="card-image"
+            />
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-description">{{ project.description }}</p>
+            <div class="tech-stack">
+              <span *ngFor="let tech of project.technologies" class="tech-badge">
+                {{ tech }}
+              </span>
+            </div>
+            <div class="project-links">
+              <a
+                *ngIf="project.link"
+                [href]="project.link"
+                target="_blank"
+                class="project-link"
+              >
+                View Project
+              </a>
+              <a
+                *ngIf="project.github"
+                [href]="project.github"
+                target="_blank"
+                class="project-link github"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- School Projects Section -->
+    <div *ngIf="!loading && schoolProjects.length > 0" class="projects-category">
+      <h2 class="category-title">School Projects</h2>
+      <div class="projects-grid">
+        <div *ngFor="let project of schoolProjects" class="project-card">
+          <div class="card-image-wrapper">
+            <img
+              [src]="project.image"
+              alt="{{ project.title }}"
+              class="card-image"
+            />
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-description">{{ project.description }}</p>
+            <div class="tech-stack">
+              <span *ngFor="let tech of project.technologies" class="tech-badge">
+                {{ tech }}
+              </span>
+            </div>
+            <div class="project-links">
+              <a
+                *ngIf="project.link"
+                [href]="project.link"
+                target="_blank"
+                class="project-link"
+              >
+                View Project
+              </a>
+              <a
+                *ngIf="project.github"
+                [href]="project.github"
+                target="_blank"
+                class="project-link github"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && schoolProjects.length === 0 && sideProjects.length === 0" class="empty-state">
+      <p>No projects yet. Check back soon!</p>
+    </div>
+  </div>
+</section>

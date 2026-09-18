@@ -1,0 +1,65 @@
+<nav class="navbar-custom">
+  <div class="container-fluid px-4 py-3">
+    <div class="navbar-content">
+      <!-- Logo -->
+      <div class="navbar-logo">
+        <a routerLink="/" class="logo-link" (click)="closeMenu()">
+          <div class="logo-circle">
+            <i class="bi bi-house-fill"></i>
+          </div>
+          <span class="logo-text">Simamkele Tancu</span>
+        </a>
+      </div>
+
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger-menu" (click)="toggleMenu()" [class.active]="isMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <ul class="navbar-links" [class.mobile-open]="isMenuOpen">
+        <li>
+          <a
+            routerLink="/about"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            About
+          </a>
+        </li>
+        <li class="divider">|</li>
+        <li>
+          <a
+            routerLink="/resume"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            Education & Experience
+          </a>
+        </li>
+        <li class="divider">|</li>
+        <li>
+          <a
+            routerLink="/projects"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            Projects
+          </a>
+        </li>
+        <li class="divider">|</li>
+        <li>
+          <a
+            routerLink="/contact"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            Contact
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
