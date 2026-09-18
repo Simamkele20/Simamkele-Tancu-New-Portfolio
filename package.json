@@ -11,6 +11,7 @@
     "start:server": "cd server && npm start",
     "start:client": "cd client && npm start",
     "build": "npm run build --prefix client",
+    "build:vercel": "npm run build --prefix client",
     "build:full": "npm run build && echo 'Frontend built successfully'"
   },
   "keywords": ["portfolio", "developer", "angular", "nodejs"],

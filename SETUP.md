@@ -144,7 +144,90 @@ POST   /api/contact                 # Submit contact form
 GET    /api/contact                 # Get all contact submissions
 ```
 
-## 💌 Email Configuration
+## � Deployment Guide
+
+### Frontend Deployment (Vercel)
+
+The frontend is configured to deploy automatically to Vercel.
+
+**Environment Variables needed in Vercel:**
+- `API_URL` - Your backend API URL (e.g., https://your-backend.railway.app)
+
+**Steps:**
+1. Connect your GitHub repository to Vercel
+2. Set the build command to `npm run build:vercel` (already configured in package.json)
+3. Set output directory to `client/dist`
+4. Add environment variables in Vercel dashboard
+5. Deploy!
+
+### Backend Deployment (Railway/Render/Heroku)
+
+Choose one platform and follow these steps:
+
+#### Option 1: Railway.app (Recommended)
+1. Push your code to GitHub
+2. Go to [Railway.app](https://railway.app)
+3. Create new project → Deploy from GitHub
+4. Select this repository
+5. Add these environment variables:
+   - `MONGODB_URI` - Your MongoDB Atlas connection string
+   - `PORT` - 3000 or 5000
+   - `NODE_ENV` - production
+   - `GMAIL_EMAIL` - Your Gmail address
+   - `GMAIL_PASSWORD` - Your Gmail app password
+   - `CORS_ORIGIN` - Your frontend URL (e.g., https://your-domain.vercel.app)
+6. Deploy!
+
+#### Option 2: Render.com
+1. Push your code to GitHub
+2. Go to [Render.com](https://render.com)
+3. Create → New Web Service
+4. Connect GitHub repository
+5. Configure:
+   - Start Command: `node server/index.js`
+   - Build Command: `npm install`
+   - Environment: Node
+   - Add same environment variables as Railway
+6. Deploy!
+
+#### Option 3: Heroku
+1. Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+2. Run:
+   ```bash
+   heroku login
+   heroku create your-app-name
+   git push heroku main
+   heroku config:set MONGODB_URI=your_connection_string
+   heroku config:set NODE_ENV=production
+   ```
+
+### Environment Variables Template
+
+Create a `.env` file in the `server/` directory:
+
+```env
+# Database
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/simamkele-portfolio
+
+# Server
+PORT=5000
+NODE_ENV=production
+
+# Email (Gmail SMTP)
+GMAIL_EMAIL=your-email@gmail.com
+GMAIL_PASSWORD=your-app-specific-password
+
+# CORS
+CORS_ORIGIN=https://your-domain.vercel.app
+```
+
+**To get Gmail App Password:**
+1. Enable 2-Factor Authentication on Google Account
+2. Go to [Google Account → Security → App passwords](https://myaccount.google.com/apppasswords)
+3. Generate a new app password for "Mail" and "Windows Computer"
+4. Use this password in `GMAIL_PASSWORD`
+
+## �💌 Email Configuration
 
 ### Using Gmail SMTP
 
