@@ -199,7 +199,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
             </a>
           </div>
 
-          <a href="/cv.pdf" download="Simamkele_Tancu_CV.pdf" class="cv-download-btn">
+          <a href="/Simamkele Tancu CV.pdf" download="Simamkele_Tancu_CV.pdf" class="cv-download-btn">
             <i class="bi bi-download"></i>Download CV
           </a>
 
