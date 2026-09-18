@@ -322,7 +322,7 @@
 
   /* Profile Section */
   .profile-section {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 40px;
     padding: 30px 20px;
     margin-bottom: 60px;
